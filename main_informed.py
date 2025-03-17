@@ -20,7 +20,23 @@ streets = {
     'Bitetto': {'Bari': 2, 'Modugno': 1}
 }
 
-# problem = StreetsProblem(initial_state='Bitetto', goal_state='Trani', streets=streets)
+cities_coords = {
+    'Andria': (41.2316, 16.2917),
+    'Corato': (41.1465, 16.4147),
+    'Altamura': (40.8302, 16.5545),
+    'Ruvo': (41.1146, 16.4886),
+    'Terlizzi': (41.1321, 16.5461),
+    'Bisceglie': (41.243, 16.5052),
+    'Trani': (41.2737, 16.4162),
+    'Molfetta': (41.2012, 16.5983),
+    'Giovinazzo': (41.1874, 16.6682),
+    'Bitonto': (41.1118, 16.6902),
+    'Modugno': (41.0984, 16.7788),
+    'Bari': (41.1187, 16.852),
+    'Bitetto': (41.040, 16.748)
+}
+
+# problem = StreetsProblem(initial_state='Bitetto', goal_state='Trani', streets=streets, coords=cities_coords)
 problem = EightProblem([1, 2, 3, 4, 0, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8, 0])
-search = GraphSearch(problem, BreadthFirstSearch())
+search = GraphSearch(problem, GreedySearch(problem))
 print(search.run())
