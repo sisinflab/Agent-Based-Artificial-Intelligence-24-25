@@ -38,12 +38,12 @@ class StreetsProblem:
 
     def successors(self, state):
         actions = self.actions(state)
-        return [(self.results(state, action), action) for action in actions]
+        return [(self.result(state, action), action) for action in actions]
 
     def actions(self, state):
         return self.streets[state].keys()
 
-    def results(self, state, action):
+    def result(self, state, action):
         return action
 
     def cost(self, state, action):
@@ -135,3 +135,48 @@ class EightProblem:
             distance += abs(current_row - goal_row) + abs(current_col - goal_col)
 
         return distance
+
+
+class EightQueenProblem:
+    def __init__(self, initial_state, goal_state=None):
+        self.initial_state = initial_state
+        self.goal_state = goal_state
+
+    def successors(self, state):
+        actions = self.actions(state)
+        return [(self.result(state, action), action) for action in actions]
+
+    def actions(self, state):
+        actions = []
+        for col, row in enumerate(state):
+            actions += [(col, new_row) for new_row in range(8) if new_row != row]
+        return actions
+
+    def result(self, state, action):
+        new_state = state[:]
+        col, row = action
+        new_state[col] = row
+        return state
+
+    def goal_test(self, state):
+        return self.heuristic(state) == 0
+
+    def cost(self, state, action):
+        return 1
+
+    def heuristic(self, state):
+        conflict = 0
+
+        for col1 in range(8):
+            row1 = state[col1]
+            for col2 in range(col1+1, 8):
+                row2 = state[col2]
+                if row1 == row2:
+                    conflict += 1
+                if abs(row1 - row2) == abs(col1 - col2):
+                    conflict += 1
+
+        return conflict
+
+    def value(self, state):
+        return - self.heuristic(state)
