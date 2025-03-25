@@ -41,6 +41,10 @@ class SimulatedAnnealingSearch:
 
             if delta > 0 or random.uniform(0, 1) < math.exp(delta/temp):
                 current = neighbor
+                print(current, self.problem.heuristic(current.state))
+
+                if self.problem.heuristic(current.state) == 0:
+                    break
 
         return current, self.problem.heuristic(current.state)
 
@@ -55,8 +59,8 @@ class GeneticAlgorithm:
         self.max_generation = max_generation
 
     def select(self, population):
-        fitness = [self.problem.value(individual) for individual in population]
-        probability = [fitness / sum(fitness) for fitness in fitness]
+        fitnesses = [1 / (1 + self.problem.heuristic(individual)) for individual in population]
+        probability = [fitness / sum(fitnesses) for fitness in fitnesses]
         return random.choices(population, weights=probability, k=2)
 
     def crossover(self, parent1, parent2):
@@ -70,12 +74,14 @@ class GeneticAlgorithm:
         return individual
 
     def run(self):
-        population = [random.choices(self.gene_pool, k=self.state_len) for _ in range(self.population_size)]
+        population = [random.sample(self.gene_pool, k=self.state_len) for _ in range(self.population_size)]
         best = None
 
         for _ in range(self.max_generation):
             population = [self.mutation(self.crossover(*self.select(population))) for _ in range(self.population_size)]
             best = max(population, key=self.problem.value)
+            print(best, self.problem.value(best))
+
             if self.problem.goal_test(best):
                 break
 

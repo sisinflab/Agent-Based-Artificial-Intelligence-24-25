@@ -156,7 +156,7 @@ class EightQueenProblem:
         new_state = state[:]
         col, row = action
         new_state[col] = row
-        return state
+        return new_state
 
     def goal_test(self, state):
         return self.heuristic(state) == 0
