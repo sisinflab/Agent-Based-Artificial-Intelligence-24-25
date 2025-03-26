@@ -35,12 +35,12 @@ class SimulatedAnnealingSearch:
             if temp == 0:
                 return current
 
-            neighbor = random.choice(current.expand(self.problem))
+            neighbour = random.choice(current.expand(self.problem))
 
             delta = self.problem.heuristic(current.state) - self.problem.heuristic(neighbor.state)
 
             if delta > 0 or random.uniform(0, 1) < math.exp(delta/temp):
-                current = neighbor
+                current = neighbour
                 print(current, self.problem.heuristic(current.state))
 
                 if self.problem.heuristic(current.state) == 0:
