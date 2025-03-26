@@ -5,12 +5,18 @@ This repository contains all the course material from the hands-on lessons of th
 The repository will be updated along with the hands-on lessons.
 You will find both **Python implementations** and **Prolog exercises**.
 Interactive Python Notebooks, used during the lessons, will be provided alongside the code.
+Additionally, the **slides** will also be provided.
 
 ## Python
 The Python implementations comprehend:
 - **Tree and Graph Search Algorithms**:
 	- Uninformed Strategies
+	- Informed Strategies
 	- Streets Problem Example
+	- EightTiles Problem Example
+- **Local Search**
+	- Local Search Algorithms
+	- _n_-Queens Problem Example
 
 ## Contacts
 For further details regarding the course, please feel free to reach out to:
