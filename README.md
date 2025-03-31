@@ -17,6 +17,12 @@ The Python implementations comprehend:
 - **Local Search**
 	- Local Search Algorithms
 	- _8_-Queens Problem Example
+- **Constraint Satisfaction Problems**:
+  - Backtracking
+  - AC-3
+  - Forward Checking
+  - Map Coloring Example
+  - Heuristics for Variable Choice
 
 ## Contacts
 For further details regarding the course, please feel free to reach out to:
