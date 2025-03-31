@@ -16,7 +16,7 @@ The Python implementations comprehend:
 	- EightTiles Problem Example
 - **Local Search**
 	- Local Search Algorithms
-	- _n_-Queens Problem Example
+	- _8_-Queens Problem Example
 
 ## Contacts
 For further details regarding the course, please feel free to reach out to:
