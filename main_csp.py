@@ -2,6 +2,7 @@ from csp.csp import CSP
 from csp.backtrack import Backtracking, BacktrackingFC
 from csp.heuristics import *
 from csp.arc_consistency import AC3
+from csp.local import MinConflict
 
 
 class DifferentValues:
@@ -49,5 +50,5 @@ search = BacktrackingFC(problem, variable_criterion=random_variable, value_crite
 
 ac3 = AC3(problem)
 
-print(ac3.run())
-print(ac3.csp.domains)
+search = MinConflict(problem, 100)
+print(search.run())
