@@ -72,7 +72,7 @@ class TicTacToe:
         return None
 
     def terminal_test(self, state):
-        return self.check_winner(state) and ' ' not in state
+        return self.check_winner(state) or ' ' not in state
 
     def utility(self, state):
         if self.terminal_test(state):
