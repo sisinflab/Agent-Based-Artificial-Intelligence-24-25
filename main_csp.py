@@ -46,9 +46,9 @@ search = Backtracking(problem, variable_criterion=degree_heuristic, value_criter
 #print(search.run())
 
 search = BacktrackingFC(problem, variable_criterion=random_variable, value_criterion=unordered_value)
-#print(search.run())
+print(search.run())
 
 ac3 = AC3(problem)
 
 search = MinConflict(problem, 100)
-print(search.run())
+#print(search.run())

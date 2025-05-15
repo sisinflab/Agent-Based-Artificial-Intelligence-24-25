@@ -1,5 +1,6 @@
 import copy
 
+
 class Backtracking:
     def __init__(self, csp, variable_criterion, value_criterion):
         self.csp = csp
@@ -44,12 +45,11 @@ class BacktrackingFC:
                 for value in new_domains[var][:]:
                     self.csp.assign(new_assignment, var, value)
                     if not self.csp.consistent(new_assignment):
-                        new_domains[var].remove(value)
-                        print(new_domains[var])
+                        new_domains[var] = [v for v in new_domains[var] if v != value]
 
                 if len(new_domains[var]) == 0:
                     return False
-        return True
+        return new_domains
 
     def backtrack_search(self, assignment):
         if self.csp.complete(assignment) and self.csp.consistent(assignment):
@@ -60,12 +60,17 @@ class BacktrackingFC:
         for value in self.value_criterion(self.csp, variable):
             self.csp.assign(assignment, value=value, variable=variable)
 
-            if self.forward_check(assignment, variable) and self.csp.consistent(assignment):
+            old_domains = copy.deepcopy(self.csp.domains)
+            new_domains = self.forward_check(assignment, variable)
+
+            if new_domains and self.csp.consistent(assignment):
+                self.csp.domains = new_domains
                 result = self.backtrack_search(assignment)
 
                 if result:
                     return result
 
+            self.csp.domains = old_domains
             self.csp.unassign(assignment, variable=variable)
 
         return False
