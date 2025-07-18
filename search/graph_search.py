@@ -23,5 +23,8 @@ class GraphSearch:
                 return 'success', node.solution()
 
             if node.state not in self.closed:
-                self.closed.append(node.state)
-                self.fringe += node.expand(self.problem)
+                self.closed += [node.state]
+
+                fringe_states = [n.state for n in self.fringe]
+                self.fringe += [new_node for new_node in node.expand(self.problem) if
+                                new_node.state not in fringe_states]
